@@ -14,7 +14,14 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     @GetMapping("/firstname/{firstname}/lastname/{lastname}")
-    public Greeting greeting(@RequestParam(value = "firstname", defaultValue = "Name") String firstname, String lastname) {
-        return new Greeting(counter.incrementAndGet(), String.format(templateFirstName, firstname), String.format(templateLastName, lastname));
+    public Greeting greeting(
+        @RequestParam(value = "firstname", defaultValue = "Name") String firstname, 
+        @RequestParam(value = "lastname", defaultValue = "Name") String lastname
+    ) {
+        return new Greeting(
+            counter.incrementAndGet(), 
+            String.format(templateFirstName, firstname), 
+            String.format(templateLastName, lastname)
+        );
     }
 }
